@@ -1,21 +1,12 @@
-<!DOCTYPE html>
+{% load crispy_forms_tags %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Image</title>
-    <input type="file" id="fileupload">
-
-    <select id="operation">
-        <option value="floutage">Floutage</option>
-        <option value="inversion">Inversion</option>
-    </select>
-
-    <button id="confirmer">Executer</button>
-
-    <!--{% load static %}
-    <img src="{% static "image/test.jpg" %}" />-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-
+<body style="padding:20px;">
+{% crispy form form.helper %}
 </body>
 </html>

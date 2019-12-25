@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.http import HttpResponseRedirect
+from .forms import Operation
 
 import numpy as np
 from PIL import Image
-
-import urllib.request
-
 
 def gaussian_kernel(size, sigma=1):
     size = int(size)
@@ -51,14 +50,15 @@ def index(request):
     image = Image.fromarray(im_array)
     image.save("image/static/image/test.jpg")"""
 
-    template = loader.get_template('image/index.html')
+    if request.method == 'POST':
+        form = Operation(request.POST)
+        if form.is_valid():
+            imageURL = form.cleaned_data['imageURL']
+            operation = form.cleaned_data['operation']
 
-    return HttpResponse(template.render(request=request))
+            print(imageURL, ' ', operation)
+
+    form = Operation()
+    return render(request, 'image/index.html', {'form': form})
 
 
-def floutage(request):
-    
-
-
-
-def inversion(request):
